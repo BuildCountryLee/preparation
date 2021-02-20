@@ -97,6 +97,64 @@ function shellSort2(arr) {
 
 
 /*------------------------5.归并排序----------------------------*/
+
+function mergeSort(arr) {
+  var step = 1;
+  var left, right;
+  while (step < arr.length) {
+    left = 0;
+    right = step;
+    while (right + step <= arr.length) {
+      mergeArray(arr, left, left + step, right, right + step);
+      left = right + step;
+      right = left + step;
+    }
+
+    if (right < arr.length) {
+      mergeArray(arr, left, left + step, right, arr.length);
+    }
+
+    step *= 2;
+
+  }
+  return arr;
+}
+
+function mergeArray(arr, startLeft, stopLeft, startRight, stopRight) {
+  var k;
+  var leftArray = new Array(stopLeft - startLeft + 1);
+  var rightArray = new Array(stopRight - startRight + 1);
+
+  k = startLeft;
+  for (var i = 0; i < (stopLeft - startLeft); i++){
+    leftArray[i] = arr[k];
+    k++;
+  }
+
+  k = startRight;
+  for (var i = 0; i < (stopRight - startRight); i++) {
+    rightArray[i] = arr[k];
+    k++;
+  }
+
+  leftArray[leftArray.length - 1] = Infinity;
+  rightArray[rightArray.length - 1] = Infinity;
+
+  var m = 0;
+  var n = 0;
+  for (k = startLeft; k < stopRight; k++) {
+    if (leftArray[m] < rightArray[n]) {
+      arr[k] = leftArray[m];
+      m++;
+    } else {
+      arr[k] = rightArray[n];
+      n++;
+    }
+  }
+  return arr;
+}
+
+
 /*------------------------6.快速排序----------------------------*/
 function quickSort(arr) {
   if(arr.length === 0) {
@@ -122,4 +180,5 @@ function quickSort(arr) {
 // console.log('🍌结果：', selectionSort(randomArray));
 // console.log('🍌结果：', insertionSort2(randomArray));
 // console.log('🍌结果：', shellSort2(randomArray));
-console.log('🍌结果：', quickSort(randomArray));
+// console.log('🍌结果：', quickSort(randomArray));
+console.log('🍌结果：', mergeSort(randomArray));
