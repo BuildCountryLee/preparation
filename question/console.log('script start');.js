@@ -1,8 +1,3 @@
-[toc]
-
-# 1 async/await、promise相关
-
-```javascript
 console.log('script start');
 
 async function async1(){
@@ -34,16 +29,4 @@ new Promise((resolve) => {
 
 console.log('script end');
 
-// 在nodejs_v_14.x
-
-
-```
-
-await V8原理
-
-```javascript
-async function foo(v) {
-  const w = await v;
-  return w;
-}```
 
