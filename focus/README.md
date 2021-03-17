@@ -11,3 +11,5 @@
 5. 事件循环
 
 6. NodeJS
+
+7. call、apply、bind
