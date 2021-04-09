@@ -1,38 +1,17 @@
-# 防抖debounce 和 节流throttle
-
-## 防抖debounce
-
-### 原理
-
-在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。
-
-### 使用场景
-
-- 按钮提交场景：防止多次点击提交按钮，只执行最后提交的一次
-
-- 搜索框联想场景：防止联想发送请求，只发送最后一次输入
-
-### 简易版实现
-
-```javascript
-function debounce(fn, wait) {
+// 防抖函数
+function debounce(func, wait) {
   let timeout;
-  return function () {
+  return function() {
     const context = this;
     const args = arguments;
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      fn.apply(context, args);
+    timeout = setTimeout(function() {
+      func.apply(context, args);
     }, wait);
   }
 }
-```
 
-### 立即执行版实现
-
-有时候希望立刻执行函数，然后等到停止触发n秒后才可以重新触发执行
-
-```javascript
+// immediate
 function debounce(func, wait, immediate) {
   let timeout;
   return function() {
@@ -52,13 +31,8 @@ function debounce(func, wait, immediate) {
     }
   }
 }
-```
 
-### 返回值版实现
-
-func函数可能会有返回值，所以需要返回函数结果，但是当immediate为false的时候，因为使用了setTimeout，我们将func.apply(context,args)的返回值赋给变量，最后再return的时候值将会一直是undefined，所以只在immediate为true的时候返回函数的执行结果。
-
-```javascript
+// return
 function debounce(func, wait, immediate) {
   let timeout, result;
   return function() {
@@ -78,4 +52,3 @@ function debounce(func, wait, immediate) {
     }
   }
 }
-```
