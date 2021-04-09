@@ -18,8 +18,6 @@ function debounce(func, wait, immediate) {
     if(immediate) {
       if(timeout) clearTimeout(timeout);
       const callNow = !timeout;
-      
-
     }else {
       clearTimeout(timeout);
       timeout = setTimeout(function() {
