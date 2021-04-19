@@ -24,3 +24,7 @@ function merge(intervals) {
 }
 
 merge(intervals);
+
+function range(num, min, max) {
+  return Math.min(Math.max(num, min), max);
+}
